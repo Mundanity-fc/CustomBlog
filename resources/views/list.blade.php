@@ -34,6 +34,7 @@
         <!-- 分隔符-->
         <hr class="my-4" />
     @endforeach
-    <!-- 选页器-->
-    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+
+    <!-- 分页器-->
+    @include('layout._pager', ['paginator' => $articles])
 @stop
