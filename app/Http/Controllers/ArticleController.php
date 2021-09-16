@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Auth;
 
 class ArticleController extends Controller
 {
@@ -14,7 +15,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('created_at','desc')->paginate(5);
+        if(!Auth::check()||Auth::user()->user_group<2)
+            $articles = Article::orderBy('created_at','desc')->where('online', true)->paginate(5);
+        if(Auth::user()->user_group=2)
+            $articles = Article::orderBy('created_at','desc')->paginate(5);
         return view('list',compact('articles'));
     }
 
@@ -25,7 +29,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('write');
     }
 
     /**
@@ -36,7 +40,21 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'slug' => 'required',
+            'online' => 'required'
+        ]);
+
+        $article = Article::create([
+            'title' => $request->title,
+            'subtitle' => $request->subtitle,
+            'slug' => $request->slug,
+            'body_md' => $request->markdown,
+            'subtitle' => $request->subtitle,
+            'online' => $request->online
+        ]);
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -51,9 +69,20 @@ class ArticleController extends Controller
             $articleFound = Article::where('id', $param)->firstOrFail();
         else
             $articleFound = Article::where('slug', $param)->firstOrFail();
-        if ($articleFound->online){
-            //if article is published, go to article page
-            return view('post', ['article' => $articleFound]);
+        if(!Auth::check()){
+            if ($articleFound->online)
+                return view('post', ['article' => $articleFound]);
+            else
+                return redirect()->route('articles.index');
+        }else{
+            if(Auth::user()->user_group<2){
+                if ($articleFound->online)
+                    return view('post', ['article' => $articleFound]);
+                else
+                    return redirect()->route('articles.index');
+            }else{
+                return view('post', ['article' => $articleFound]);
+            }
         }
 
         //if article not published, redirect to articles.index page

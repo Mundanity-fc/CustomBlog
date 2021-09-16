@@ -14,6 +14,9 @@
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/login">登录</a></li>
                 @else
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4">{{ Auth::user()->name }}</a></li>
+                    @if(Auth::user()->user_group == 2)
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/write">攥写</a></li>
+                    @endif
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/logout">登出</a></li>
                 @endif
             </ul>

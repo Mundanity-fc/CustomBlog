@@ -18,7 +18,7 @@
                 @endif
             @endforeach
         </div>
-        <form id="contactForm" method="POST" action="{{ route('Session.Login') }}">
+        <form method="POST" action="{{ route('Session.Login') }}">
             {{ csrf_field() }}
             <div class="form-floating mb-3">
                 <input class="form-control" name="email" type="email" value="{{ old('email') }}"/>

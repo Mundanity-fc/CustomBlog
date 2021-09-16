@@ -1,7 +1,7 @@
 @extends('layout.Templete._postTemplete')
 
 @section('articleTitle')
-    文章测试
+    {{$article -> title}}
 @stop
 
 @section('header')
@@ -69,6 +69,18 @@
 --}}
 
 @section('side-widget')
+    <div class="card mb-4">
+        <div class="card-header">信息</div>
+        <div class="card-body">
+            <div class="row">
+                <ul class="list-unstyled mb-0">
+                    <li>发布于{{ $article->created_at }}</li>
+                    <li>修订于{{ $article->updated_at }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {{--
     <!-- Search widget-->
     <div class="card mb-4">
         <div class="card-header">Search</div>
@@ -79,6 +91,7 @@
             </div>
         </div>
     </div>
+
     <!-- Categories widget-->
     <div class="card mb-4">
         <div class="card-header">Categories</div>
@@ -101,9 +114,18 @@
             </div>
         </div>
     </div>
+    --}}
     <!-- Side widget-->
     <div class="card mb-4">
-        <div class="card-header">Side Widget</div>
-        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+        <div class="card-header">管理工具</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="#!">修改</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 @stop

@@ -18,7 +18,7 @@
                 </div>
             @endif
         </div>
-        <form id="contactForm" method="POST" action="{{ route('users.store') }}">
+        <form method="POST" action="{{ route('users.store') }}">
             {{ csrf_field() }}
             <div class="form-floating mb-3">
                 <input class="form-control" name="name" type="name" value="{{ old('name') }}"/>

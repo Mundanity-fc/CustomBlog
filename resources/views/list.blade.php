@@ -24,12 +24,22 @@
                 <h2 class="post-title"> {{$article -> title}} </h2>
                 <h3 class="post-subtitle"> {{$article -> subtitle}} </h3>
             </a>
-            <p class="post-meta">
-                由
-                <a href="#!">Mundanity Fan</a>
-                发布于
-                {{$article -> created_at}}
-            </p>
+            @if($article->online)
+                <p class="post-meta">
+                    由
+                    <a href="#!">Mundanity Fan</a>
+                    发布于
+                    {{$article -> created_at}}
+                </p>
+            @endif
+            @if(!$article->online)
+                <p class="post-meta">
+                    草稿由
+                    <a href="#!">Mundanity Fan</a>
+                    保存于
+                    {{$article -> created_at}}
+                </p>
+            @endif
         </div>
         <!-- 分隔符-->
         <hr class="my-4" />

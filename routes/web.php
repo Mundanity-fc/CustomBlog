@@ -18,6 +18,8 @@ use App\Http\Controllers\SessionsController;
 Route::get('/', function () {return view('main');})->name('homepage');
 Route::get('/article', [ArticleController::class,'index'])->name('articles.index');
 Route::get('/post/{param}', [ArticleController::class,'show'])->name('articles.show');
+Route::get('/write', [ArticleController::class,'create'])->name('articles.create');
+Route::post('/write', [ArticleController::class,'store'])->name('articles.store');
 Route::get('/login', [SessionsController::class,'create'])->name('Session.Login');;
 Route::post('login', [SessionsController::class,'store'])->name('Session.Login');
 Route::any('logout', [SessionsController::class,'destroy'])->name('logout');
