@@ -15,11 +15,17 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        if(!Auth::check()||Auth::user()->user_group<2)
+        if(!Auth::check()||Auth::user()->user_group<2){
             $articles = Article::orderBy('created_at','desc')->where('online', true)->paginate(5);
-        if(Auth::user()->user_group=2)
+            return view('list',compact('articles'));
+        }
+
+        if(Auth::user()->user_group=2){
             $articles = Article::orderBy('created_at','desc')->paginate(5);
-        return view('list',compact('articles'));
+            return view('list',compact('articles'));
+        }
+
+
     }
 
     /**
@@ -61,7 +67,7 @@ class ArticleController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     *
      */
     public function show($param)
     {

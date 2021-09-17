@@ -12,7 +12,7 @@
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="post-heading">
                         <h1>攥写新的文章</h1>
-                        <span class="subheading">Enjoy code with Markdown!</span>
+                        <span class="subheading">Enjoy coding with Markdown!</span>
                     </div>
                 </div>
             </div>
@@ -77,8 +77,8 @@
         </div>
     </div>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/editormd.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/editormd.js"></script>
     <script type="text/javascript">
         var testEditor;
         $(function() {
@@ -86,7 +86,10 @@
                 width   : "90%",
                 height  : 640,
                 syncScrolling : "single",
-                path    : "../lib/"
+                path    : "/lib/",
+                imageUpload : true,
+                imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL : "/php/newup.php",
             });
             $("#get-md-btn").click(function(){
                 $('#text').val(testEditor.getMarkdown());

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\CustomPostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +16,8 @@ use App\Http\Controllers\SessionsController;
 |
 */
 
-Route::get('/', function () {return view('main');})->name('homepage');
+Route::get('/', [CustomPostController::class,'homepage'])->name('homepage');
+Route::get('/about', [CustomPostController::class,'about'])->name('homepage');
 Route::get('/article', [ArticleController::class,'index'])->name('articles.index');
 Route::get('/post/{param}', [ArticleController::class,'show'])->name('articles.show');
 Route::get('/write', [ArticleController::class,'create'])->name('articles.create');

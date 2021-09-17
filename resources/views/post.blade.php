@@ -14,7 +14,9 @@
                         <h1> {{$article -> title}} </h1>
                         <h2 class="subheading"> {{$article -> subtitle}} </h2>
                         <!-- 分类-->
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
+                        @if(!$article -> online)
+                            <a class="badge bg-warning text-decoration-none link-light">草稿</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -23,7 +25,34 @@
 @stop
 
 @section('content')
-    {!! $article -> body_html !!}
+    <div id="test-editormd-view2">
+                <textarea id="append-test" style="display:none;">
+{{ $article -> body_md }}
+                </textarea>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/lib/marked.min.js"></script>
+    <script src="/lib/prettify.min.js"></script>
+    <script src="/lib/raphael.min.js"></script>
+    <script src="/lib/underscore.min.js"></script>
+    <script src="/lib/sequence-diagram.min.js"></script>
+    <script src="/lib/flowchart.min.js"></script>
+    <script src="/lib/jquery.flowchart.min.js"></script>
+    <script src="/js/editormd.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var  testEditormdView2;
+
+            testEditormdView2 = editormd.markdownToHTML("test-editormd-view2", {
+                htmlDecode      : "style,script,iframe",
+                emoji           : true,
+                taskList        : true,
+                tex             : true,
+                flowChart       : true,
+                sequenceDiagram : true,
+            });
+        });
+    </script>
 @stop
 
 {{--
