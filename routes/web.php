@@ -17,7 +17,7 @@ use App\Http\Controllers\CustomPostController;
 */
 
 Route::get('/', [CustomPostController::class,'homepage'])->name('homepage');
-Route::get('/about', [CustomPostController::class,'about'])->name('homepage');
+Route::get('/about', [CustomPostController::class,'about'])->name('about');
 Route::get('/article', [ArticleController::class,'index'])->name('articles.index');
 Route::get('/post/{param}', [ArticleController::class,'show'])->name('articles.show');
 Route::get('/write', [ArticleController::class,'create'])->name('articles.create');
