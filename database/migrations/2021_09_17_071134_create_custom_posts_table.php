@@ -19,6 +19,7 @@ class CreateCustomPostsTable extends Migration
             $table->string('subtitle')->nullable();;
             $table->text('body_md')->nullable();
             $table->char('online', 1);
+            $table->string('coverURL')->nullable();
             $table->timestamps();
         });
     }

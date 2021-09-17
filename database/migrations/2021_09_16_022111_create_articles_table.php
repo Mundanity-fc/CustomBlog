@@ -20,6 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('slug')->index();
             $table->text('body_md')->nullable();
             $table->char('online', 1);
+            $table->string('coverURL')->nullable();
             $table->timestamps();
         });
     }
