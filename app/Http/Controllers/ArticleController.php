@@ -35,7 +35,12 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('write');
+        if(!Auth::check())
+            return redirect()->route('homepage');
+        if(Auth::user()->user_group<2)
+            return redirect()->route('homepage');
+        if(Auth::user()->user_group=2)
+            return view('write');
     }
 
     /**
