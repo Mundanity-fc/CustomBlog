@@ -1,7 +1,7 @@
 @extends('layout.Templete._homeTemplete')
 
 @section('title')
-    主页
+    {{ $specialPost -> title }}
 @stop
 
 @section('Header')
