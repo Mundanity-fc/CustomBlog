@@ -17,6 +17,7 @@ class CreateCustomPostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('subtitle')->nullable();;
+            $table->string('slug');
             $table->text('body_md')->nullable();
             $table->char('online', 1);
             $table->string('coverURL')->nullable();

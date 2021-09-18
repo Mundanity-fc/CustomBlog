@@ -8,11 +8,11 @@ use App\Models\customPost;
 class CustomPostController extends Controller
 {
     public function homepage(){
-        $specialPost = customPost::where('title', '主页')->firstOrFail();
+        $specialPost = customPost::where('slug', '主页')->firstOrFail();
         return view('specialPost',compact('specialPost'));
     }
     public function about(){
-        $specialPost = customPost::where('title', '关于')->firstOrFail();
+        $specialPost = customPost::where('slug', '关于')->firstOrFail();
         return view('specialPost',compact('specialPost'));
     }
 }
