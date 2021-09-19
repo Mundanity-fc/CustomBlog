@@ -145,16 +145,18 @@
     </div>
     --}}
     <!-- Side widget-->
-    <div class="card mb-4">
-        <div class="card-header">管理工具</div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-sm-6">
-                    <ul class="list-unstyled mb-0">
-                        <li><a href="#!">修改</a></li>
-                    </ul>
+    @if(Auth::check()&&Auth::user()->user_group==2)
+        <div class="card mb-4">
+            <div class="card-header">管理工具</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#!">修改</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @stop
