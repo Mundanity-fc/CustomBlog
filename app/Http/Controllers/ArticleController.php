@@ -5,24 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\config;
 
 class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function index()
     {
+        //配置
+        $configs = config::orderBy('id')->get();
+
+        //权限
         if(!Auth::check()||Auth::user()->user_group<2){
             $articles = Article::orderBy('created_at','desc')->where('online', true)->paginate(5);
-            return view('list',compact('articles'));
+            return view('list', compact('articles','configs'));
         }
 
         if(Auth::user()->user_group=2){
             $articles = Article::orderBy('created_at','desc')->paginate(5);
-            return view('list',compact('articles'));
+            return view('list', compact('articles','configs'));
         }
 
 
@@ -31,23 +36,27 @@ class ArticleController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function create()
     {
+        //配置
+        $configs = config::orderBy('id')->get();
+
+        //权限
         if(!Auth::check())
             return redirect()->route('homepage');
         if(Auth::user()->user_group<2)
             return redirect()->route('homepage');
         if(Auth::user()->user_group=2)
-            return view('write');
+            return view('write', compact('configs'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *
+     *
      */
     public function store(Request $request)
     {
@@ -62,7 +71,6 @@ class ArticleController extends Controller
             'subtitle' => $request->subtitle,
             'slug' => $request->slug,
             'body_md' => $request->markdown,
-            'subtitle' => $request->subtitle,
             'online' => $request->online
         ]);
         return redirect()->route('articles.index');
@@ -71,29 +79,35 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Article  $article
+     *
      *
      */
     public function show($param)
     {
-        if(is_int($param))
-            $articleFound = Article::where('id', $param)->firstOrFail();
-        else
-            $articleFound = Article::where('slug', $param)->firstOrFail();
+        //文章检索
+        if(is_int($param)) {
+            $article = Article::where('id', $param)->firstOrFail();
+        }
+        else {
+            $article = Article::where('slug', $param)->firstOrFail();
+        }
+
+        //配置
+        $configs = config::orderBy('id')->get();
+
+        //权限策略
         if(!Auth::check()){
-            if ($articleFound->online)
-                return view('post', ['article' => $articleFound]);
+            if ($article->online)
+                return view('post', compact('article','configs'));
             else
                 return redirect()->route('articles.index');
-        }else{
-            if(Auth::user()->user_group<2){
-                if ($articleFound->online)
-                    return view('post', ['article' => $articleFound]);
-                else
-                    return redirect()->route('articles.index');
-            }else{
-                return view('post', ['article' => $articleFound]);
+        }else if(Auth::user()->user_group<2){
+            if ($article->online) {
+                return view('post', compact('article', 'configs'));
             }
+            return redirect()->route('articles.index');
+        }else{
+            return view('post', compact('article','configs'));
         }
 
         //if article not published, redirect to articles.index page
