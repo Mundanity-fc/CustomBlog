@@ -6,7 +6,15 @@
 
 @section('Header')
     <header class="masthead"
-            style="background-image: url('https://www.mundanity.tech/imgapi.php?type=h');">
+            style="background-image: url(
+            @if($configs[0]->key)
+                {{ $configs[1]->key }}
+            @elseif(is_null($specialPost->coverURL))
+                {{ $configs[2]->key }}
+                @else
+                    {{ $specialPost->coverURL }}
+            @endif()
+            );">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
