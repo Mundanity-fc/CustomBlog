@@ -11,6 +11,7 @@ class customPost extends Model
     protected $fillable = [
         'title',
         'subtitle',
+        'slug',
         'body_md',
         'online'
     ];
