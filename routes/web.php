@@ -5,6 +5,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\CustomPostController;
+use App\Http\Controllers\SitemapController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,6 @@ Route::any('logout', [SessionsController::class,'destroy'])->name('logout');
 Route::get('/register', [UserController::class,'create'])->name('users.create');
 Route::post('/register', [UserController::class,'store'])->name('users.store');
 Route::get('/register/{token}', [UserController::class,'ConfirmEmail'])->name('users.confirmEmail');
-
+Route::get('/sitemap', [SitemapController::class,'index'])->name('sitemap');
 //待修改路径
 Route::get('/init',function (){return view('init');})->name('config.initialization');
