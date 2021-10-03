@@ -14,7 +14,7 @@ class configController extends Controller
         ]);
         $config2 = config::create([
             'config' => 'defaultImgURL',
-            'key' => '/images/bg.png',
+            'key' => '/images/bg.webp',
         ]);
         $config3 = config::create([
             'config' => 'customImgURL',

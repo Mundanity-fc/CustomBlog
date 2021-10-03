@@ -30,6 +30,8 @@ Route::get('/register', [UserController::class,'create'])->name('users.create');
 Route::post('/register', [UserController::class,'store'])->name('users.store');
 Route::get('/register/{token}', [UserController::class,'ConfirmEmail'])->name('users.confirmEmail');
 Route::get('/sitemap', [SitemapController::class,'index'])->name('sitemap');
+Route::get('/sitemap.xml', [SitemapController::class,'index'])->name('sitemap');
 Route::get('/sitemap_baidu', [SitemapController::class,'index_baidu'])->name('sitemap_baidu');
+Route::get('/sitemap_baidu.xml', [SitemapController::class,'index_baidu'])->name('sitemap_baidu');
 //待修改路径
 Route::get('/init',function (){return view('init');})->name('config.initialization');
