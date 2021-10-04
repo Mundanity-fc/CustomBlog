@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="keywords" content="申酉和风博客，技术分享，网络小说翻译，教程发布">
+    <meta name="description" content="文章列表" />
+    <meta name="author" content="Mundanity Fan" />
     <title>文章列表</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <!-- Font Awesome icons (free version)-->

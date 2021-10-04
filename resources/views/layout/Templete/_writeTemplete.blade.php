@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="keywords" content="申酉和风博客，技术分享，网络小说翻译，教程发布">
+    <meta name="description" content="编写页面" />
+    <meta name="author" content="Mundanity Fan" />
+    <meta name="robots" content="noindex" />
     <title>@yield('title')</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <!-- Google fonts-->

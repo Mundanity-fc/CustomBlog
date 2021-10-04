@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="keywords" content="申酉和风博客，技术分享，网络小说翻译，教程发布">
+    <meta name="description" content="用户表单" />
+    <meta name="author" content="Mundanity Fan" />
+    <meta name="robots" content="noindex" />
     <title>@yield('title')</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
